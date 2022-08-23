@@ -1,0 +1,54 @@
+﻿@model List<EntitiyLayer.Entities.Password>
+@{
+    ViewBag.Title = "Index";
+}
+
+<a class="btn btn-primary" href="/Password/Create">Şifre Ekle</a>
+<br />
+<br />
+<table class="table table-bordered" id="table">
+    <tr>
+        <th>Web Site Adı</th>
+        <th>Kullanıcı Adı</th>
+        <th>Şifre</th>
+        <th>Sil</th>
+        <th>Güncelle</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            
+            <td>@item.WebSiteName</td>
+            <td>@item.SiteUserName</td>
+            <td>@item.SitePassword</td>
+            <td><a class="btn btn-danger btnSil" data-id="@item.Id">Sil</a></td>
+            <td><a class="btn btn-primary" href="/Password/Update/@item.Id">Güncelle</a></td>
+        </tr>
+    }
+</table>
+
+<script src="~/bootstrap/js/bootstrap.min.js"></script>
+<link href="~/bootstrap/css/bootstrap.css" rel="stylesheet"/>
+<script src="~/Scripts/jquery-1.8.3.min.js"></script>
+<script src="~/Scripts/bootbox.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $("#table").on("click", ".btnSil", function () {
+            var btn = $(this);
+            bootbox.confirm("Silmek İstediğinize Emin Misiniz ?", function (result) {
+                if (result) {
+                    var id = btn.data("id");                  
+                    $.ajax({
+                        type: "GET",
+                        url: "/Password/Delete/" + id,
+                        success: function () {
+                            btn.parent().parent().remove();
+                        }
+                    });
+                }
+                
+            })
+            
+        })
+    });
+</script>

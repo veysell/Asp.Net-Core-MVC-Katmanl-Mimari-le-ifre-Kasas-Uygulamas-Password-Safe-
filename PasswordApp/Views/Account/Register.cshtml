@@ -1,0 +1,76 @@
+﻿@model EntitiyLayer.Entities.User
+@{
+    ViewBag.Title = "Register";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Login | PasswordSafe</title>
+    <script src="~/bootstrap/js/bootstrap.min.js"></script>
+    <link href="~/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+</head><!--/head-->
+
+<body style="background-color:#f8f9fa">
+
+    <style>
+        input {
+            border-color: #987687;
+            border-radius: 5px;
+            text-shadow: 1px #000000;
+        }
+
+            input:hover {
+                border-color: #6e588e;
+                border-radius: 8px;
+                box-shadow: 0 0 11px;
+            }
+    </style>
+
+    <div class="container mt-5">
+        <div class="row">
+
+            <div class="col-md-12 text-center">
+                <h2>Kayıt</h2>
+                <hr />
+                <form action="/Account/Register" method="post">
+                    <div class="form-group mb-4 text-center">
+                        <input type="text" placeholder="Ad" name="Name" required />
+                        @Html.ValidationMessageFor(x => x.Name, "", new { @style = "color:red" })
+                    </div>
+                    <div class="form-group mb-4 text-center">
+                        <input type="text" placeholder="Soyad" name="SurName" required />
+                        @Html.ValidationMessageFor(x => x.Surname, "", new { @style = "color:red" })
+                    </div>
+                    <div class="form-group mb-4 text-center">
+                        <input type="email" placeholder="Email Adresi" name="Mail" required />
+                        @Html.ValidationMessageFor(x => x.Mail, "", new { @style = "color:red" })
+                    </div>
+                    <div class="form-group mb-4 text-center">
+                        <input type="text" placeholder="Kullanıcı Adı" name="UserName" required />
+                        @Html.ValidationMessageFor(x => x.UserName, "", new { @style = "color:red" })
+                    </div>
+                    <div class="form-group mb-4 text-center">
+                        <input type="password" placeholder="Şifre" name="Password" required />
+                        @Html.ValidationMessageFor(x => x.Password, "", new { @style = "color:red" })
+                    </div>
+                    <div class="form-group mb-4 text-center">
+                        <input type="password" placeholder="Şifre Tekrar" name="RePassword" required />
+                        @Html.ValidationMessageFor(x => x.RePassword, "", new { @style = "color:red" })
+                    </div>
+                    <button type="submit" class="btn btn-primary">Kaydet</button>
+                    <a href="/Account/Login" class="btn btn-secondary">Giriş Yap</a>
+                </form>
+            </div>
+
+
+        </div>
+    </div>
+
+</body>
+</html>
